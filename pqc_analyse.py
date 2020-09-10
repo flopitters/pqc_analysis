@@ -9,6 +9,7 @@ from pqc_analyse_functions import *
 
 
 
+
 ## Function Definitions
 ## ------------------------------------
 
@@ -245,7 +246,7 @@ def analyse_linewidth_data(fn, debug=0):
         print(" -- Analysing linewidth for file:\n\t%s" % fn)
     
     ## read data
-    dat = np.genfromtxt(path + '/' + fn, skip_header=27)
+    dat = np.genfromtxt(path + '/' + fn, skip_header=13)
     t, i, v =  dat[:, 0], dat[:, 1], dat[:, 2]
     lbl = '_'.join(fn.split('_')[4:9])
     
@@ -332,32 +333,30 @@ def analyse_folder(path, debug=0):
         #
         # if 'cv' in [v.lower() for v in f.split('_')]:
         #     v, c, lbl  = analyse_cv_data(path + '/' + f)
-
-        if 'mos' in [v.lower() for v in f.split('_')]:
-            v, c, vfb_2, t_ox, n_ox, lbl = analyse_mos_data(path + '/' + f)
-            print(lbl, vfb_2, t_ox, n_ox)
+        #
+        # if 'mos' in [v.lower() for v in f.split('_')]:
+        #     v, c, vfb_2, t_ox, n_ox, lbl = analyse_mos_data(path + '/' + f)
+        #     print(lbl, vfb_2, t_ox, n_ox)
 
         # if 'gcd' in [v.lower() for v in f.split('_')]:
-        #     # v, i_em, lbl = analyse_gcd(path + '/' + f)
-        #     pass
-        
+        #     v, i, lbl = analyse_gcd_data(path + '/' + f)
+        #
         # if 'fet' in [v.lower() for v in f.split('_')]:
-        #     v, i_em, v_th, lbl = analyse_fet_data(path + '/' + f)
+        #     v, i, v_th, lbl = analyse_fet_data(path + '/' + f)
         #     print(lbl, v_th)
-        #
-        # if 'van-der-pauw' in [v.lower() for v in f.split('_')]:
-        #     i, v, r_sheet, lbl = analyse_van_der_pauw_data(path + '/' + f)
-        #     print(lbl, r_sheet)
-        #
-        # if 'meander' in [v.lower() for v in f.split('_')]:
-        #     r = analyse_meander_data(path + '/' + f)
-        #
-        # if 'breakdown' in [v.lower() for v in f.split('_')]:
-        #     v_bd = analyse_breakdown_data(path + '/' + f)
-        #
-        # if 'linewidth' in [v.lower() for v in f.split('_')]:
-        #     analyse_linewidth_data(path + '/' + f)
 
+        if 'van-der-pauw' in [v.lower() for v in f.split('_')]:
+            i, v, r_sheet, lbl = analyse_van_der_pauw_data(path + '/' + f)
+            print(lbl, r_sheet)
+
+        if 'linewidth' in [v.lower() for v in f.split('_')]:
+            analyse_linewidth_data(path + '/' + f)
+
+        # if 'meander' in [v.lower() for v in f.split('_')]:
+    #         r = analyse_meander_data(path + '/' + f)
+    #
+    #     if 'breakdown' in [v.lower() for v in f.split('_')]:
+    #         v_bd = analyse_breakdown_data(path + '/' + f)
 
 
 
@@ -385,23 +384,23 @@ def main():
         
     else:
         paths = [
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_1001_UL_300um_5V',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_1002_UL_300um_2V',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_1003_UL_300um_2V',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_1101_UL_300um_5V',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_1102_UL_300um_2V',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_1103_UL_300um_2V',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_2001_UL_200um_5V',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_2002_UL_200um_2V',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_2003_UL_200um_2V',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_2101_UL_200um_5V',
-            '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_2102_UL_200um_2V',
-            '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_8in_LD_2019_TS_2103_UL_200um_2V'
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_VPX33234_016_PSS_HM-EE',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_VPX33234_017_PSS_HM-EE',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_VPX33234_018_PSS_HM-EE',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_VPX33234_019_PSS_HM-EE',
-            # '/Users/Home/Documents/Works/comet/PlotScripts/data/HPK_VPX33234_020_PSS_HM-EE',
+            # '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_1001_UL_300um_5V',
+            # '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_1002_UL_300um_2V',
+            # '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_1003_UL_300um_2V',
+            # '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_1101_UL_300um_5V',
+            # '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_1102_UL_300um_2V',
+            # '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_1103_UL_300um_2V',
+            # '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_2001_UL_200um_5V',
+            # '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_2002_UL_200um_2V',
+            '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_2003_UL_200um_2V',
+            '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_2101_UL_200um_5V',
+            '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_2102_UL_200um_2V',
+            '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_8in_LD_2019_TS_2103_UL_200um_2V',
+            '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_VPX33234_016_PSS_HM-EE',
+            '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_VPX33234_017_PSS_HM-EE',
+            '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_VPX33234_018_PSS_HM-EE',
+            '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_VPX33234_019_PSS_HM-EE',
+            '/Users/Home/Documents/Works/pqc/pqc_analysis/data/HPK_VPX33234_020_PSS_HM-EE'
         ]
 
         for path in paths:
